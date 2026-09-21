@@ -1,472 +1,479 @@
-# 🌱 EcoTransit
+🌱 EcoTransit --- Smart Urban Mobility & Environmental-Impact Platform
 
-### Smart Urban Mobility & Environmental-Impact Platform
+Plain Text
 
-<p align="center">
-  <strong>Track your journeys • Measure your impact • Build sustainable habits</strong>
-</p>
-
-<p align="center">
-  A Django-based full-stack web application prototype for journey tracking, environmental-impact estimation, route visualization, sustainable mobility analytics, and gamification.
-</p>
 
 <p align="center">
 
-![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
-![Django](https://img.shields.io/badge/Django-Framework-092E20?style=for-the-badge\&logo=django\&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-Local%20DB-003B57?style=for-the-badge\&logo=sqlite\&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Production%20DB-4169E1?style=for-the-badge\&logo=postgresql\&logoColor=white)
-![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900?style=for-the-badge\&logo=leaflet\&logoColor=white)
-![Tests](https://img.shields.io/badge/Tests-150%20Passing-2EA44F?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-V1-00A86B?style=for-the-badge)
+
+
+<img src="docs/assets/ecotransit-dashboard-hero.png" alt="EcoTransit dashboard hero" width="100%">{=html}
+
+Plain Text
+
 
 </p>
 
----
-
-## 🌍 What is EcoTransit?
-
-**EcoTransit** is a professional full-stack web application prototype designed to make everyday mobility more measurable and environmentally understandable.
-
-The platform allows users to record journeys, capture GPS points, calculate estimated environmental impact, visualize routes, review travel history, earn sustainable-mobility points, maintain streaks, unlock achievements, and export their journey records.
-
-At the same time, EcoTransit provides administrative analytics, historical emission-factor snapshots, API ownership controls, journey-integrity hashing, and production-oriented security configuration.
-
-### The core idea
-
-```text
-                 YOUR JOURNEY
-                      │
-                      ▼
-              ┌───────────────┐
-              │ Transport Mode│
-              └───────┬───────┘
-                      │
-                      ▼
-              ┌───────────────┐
-              │ GPS / Route   │
-              │   Points      │
-              └───────┬───────┘
-                      │
-                      ▼
-              ┌───────────────┐
-              │   Distance    │
-              └───────┬───────┘
-                      │
-                      ▼
-              ┌───────────────┐
-              │ Carbon Impact │
-              └───────┬───────┘
-                      │
-              ┌───────┴────────┐
-              ▼                ▼
-       ┌─────────────┐  ┌─────────────┐
-       │ Green Points│  │    Streak   │
-       └──────┬──────┘  └──────┬──────┘
-              │                │
-              └───────┬────────┘
-                      ▼
-              ┌───────────────┐
-              │ Achievements  │
-              └───────────────┘
-```
-
-> **Track. Measure. Understand. Move Sustainably.**
-
----
-
-# ✨ Why EcoTransit?
-
-Transportation choices have environmental consequences, but those consequences are often difficult to see in everyday life.
-
-EcoTransit connects mobility tracking with understandable environmental metrics and user engagement.
-
-Instead of treating sustainability as an abstract concept, the platform turns a journey into measurable information:
-
-* 📍 Where did the journey happen?
-* 🛣️ How far did it travel?
-* 🚶 Which transport mode was used?
-* 🌱 What was the estimated environmental impact?
-* ⭐ How many points were earned?
-* 🔥 Is the user's sustainable streak continuing?
-* 🏆 Were any achievements unlocked?
-* 📊 What does the user's journey history look like?
-
----
-
-# 🚀 Feature Overview
-
-| Feature                            | Status |
-| ---------------------------------- | :----: |
-| 🔐 User authentication             |    ✅   |
-| 👤 User profiles                   |    ✅   |
-| 🚌 Transport modes                 |    ✅   |
-| 🗺️ Interactive maps               |    ✅   |
-| 📍 GPS journey points              |    ✅   |
-| 🧭 Route calculation               |    ✅   |
-| 🔎 Forward geocoding               |    ✅   |
-| 🔄 Reverse geocoding               |    ✅   |
-| 📏 Distance calculation            |    ✅   |
-| 🌱 Carbon-impact calculation       |    ✅   |
-| 📸 Historical emission snapshots   |    ✅   |
-| 🛡️ SHA-256 journey integrity      |    ✅   |
-| 📚 Journey history                 |    ✅   |
-| 📄 CSV export                      |    ✅   |
-| 📋 JSON export                     |    ✅   |
-| 📑 PDF export                      |    ✅   |
-| ⭐ Green points                     |    ✅   |
-| 🔥 Sustainable streaks             |    ✅   |
-| 🏆 Achievements                    |    ✅   |
-| 📈 Admin analytics                 |    ✅   |
-| 🔒 Ownership enforcement           |    ✅   |
-| ⚙️ Environment-based configuration |    ✅   |
-| 🧪 Automated testing               |    ✅   |
-| 🛡️ Production security checks     |    ✅   |
-
----
 
-# 🧩 Core Features
 
-## 🗺️ 1. Journey Tracking
+Plain Text
 
-EcoTransit implements a complete journey lifecycle.
 
-A journey can:
+<p align="center">
 
-1. Start with a selected transport mode.
-2. Record GPS/location points.
-3. Calculate the travelled distance.
-4. Calculate estimated environmental impact.
-5. Finalize the journey.
-6. Generate an integrity hash.
-7. Award applicable points.
-8. Update the user's streak.
-9. Evaluate achievement milestones.
-10. Become available in journey history.
 
-Journey completion is performed inside a database transaction so that carbon calculation, integrity finalization, and gamification remain consistent.
 
----
+<strong>{=html}A professional full-stack web application prototype for
+measurable, gamified, and privacy-aware sustainable urban
+mobility.</strong>{=html}
 
-## 📍 2. GPS Point Tracking
+Plain Text
 
-Active journeys can receive GPS points.
 
-Each point receives an automatically assigned sequence number.
+</p>
 
-This allows recorded journey points to be reconstructed in their correct order.
 
-Distance is calculated using the **Haversine great-circle distance formula**.
 
----
+Plain Text
 
-## 🌱 3. Environmental Impact Calculation
 
-EcoTransit calculates estimated carbon savings against the project's defined **driving/car baseline**.
+<p align="center">
 
-The calculation uses an `EmissionFactorSnapshot` so that the factor used by a completed journey remains historically associated with that journey.
 
-### Why snapshots matter
 
-Consider:
+<a href="#-features">{=html}Features</a>{=html} •
+<a href="#-architecture">{=html}Architecture</a>{=html} •
+<a href="#-carbon-methodology">{=html}Carbon Methodology</a>{=html}
+• <a href="#-api-reference">{=html}API</a>{=html} •
+<a href="#-testing">{=html}Testing</a>{=html} •
+<a href="#-presentation">{=html}Presentation</a>{=html} •
+<a href="#-quick-start">{=html}Quick Start</a>{=html}
 
-```text
-Emission Factor A
-       │
-       ▼
-   Journey #1
-       │
-       ▼
- Snapshot A
-       │
-       │
- Factor updated
-       │
-       ▼
-Emission Factor B
-       │
-       ▼
-   Journey #2
-       │
-       ▼
- Snapshot B
-```
+Plain Text
 
-Changing the currently active emission factor therefore does not silently rewrite the historical factor associated with Journey #1.
 
-> EcoTransit provides estimated environmental-impact calculations. It does not represent verified carbon offsets or independently certified emissions reductions.
+</p>
 
----
 
-# ⭐ 4. Green Points
 
-EcoTransit uses a defined points formula:
 
-```text
-points =
-round(max(carbon_saved_g, 0) / 1000 * 10)
-+
-round(distance_km * mode_multiplier)
-```
 
-### Transport-mode multipliers
 
-| Transport Mode         | Points / km |
-| ---------------------- | ----------: |
-| 🚶 Walking             |          15 |
-| 🚲 Cycling             |          15 |
-| 🚌 Public Transit      |           8 |
-| ⚡ Electric Vehicle     |           3 |
-| 🚗 Driving / Car (ICE) |           0 |
+📌 Project Snapshot
 
-Negative `carbon_saved_g` values are floored to zero **only for the points formula**.
+EcoTransit is a Django-based smart urban mobility platform that
+turns everyday journeys into measurable sustainability records.
 
-Therefore, a journey that produces more emissions than the baseline does not subtract points.
+It combines:
 
----
+•
+🚌 Sustainable transport tracking
 
-# 🔥 5. Sustainable Streaks
+•
+📍 Manual and live GPS journey capture
 
-EcoTransit tracks sustainable journey activity by **calendar day**.
+•
+🗺️ Leaflet-based maps
 
-### Streak rules
+•
+🧭 OpenRouteService routing and geocoding
 
-* One qualifying completed journey per calendar day maintains or grows the streak.
-* Multiple journeys on the same day do not double-count.
-* A gap of a full calendar day or more resets the streak.
-* After a reset, completing a qualifying journey results in a streak of `1`.
-* Calendar-day comparison is used instead of a raw 48-hour timer.
+•
+🌱 Carbon-savings estimation
 
-### Example
+•
+🏆 Green points, achievements, and streaks
 
-```text
-Monday     ✅   Streak: 1
-Tuesday    ✅   Streak: 2
-Wednesday  ✅   Streak: 3
-Thursday   ❌
-Friday     ❌
-Saturday   ✅   Streak: 1
-```
+•
+📊 Journey history and analytics
 
-This prevents a completed journey immediately after a missed period from displaying an unintuitive streak of `0`.
+•
+📄 CSV / JSON / PDF exports
 
----
+•
+🔐 Ownership checks, secure configuration, and integrity hashing
 
-# 🏆 6. Achievement System
+•
+🧪 Automated unit, integration, API, export, and gamification tests
 
-EcoTransit currently provides three achievement milestones.
+•
+👨‍💼 Staff-facing analytics and emission-factor management
 
-| Achievement      | Trigger                               | Bonus |
-| ---------------- | ------------------------------------- | ----: |
-| 🥾 First Steps   | First-ever completed journey          |   +50 |
-| ⚔️ Eco Warrior   | Cumulative carbon saved crosses 10 kg |  +200 |
-| 🌿 Week of Green | Streak reaches 7 consecutive days     |  +100 |
 
-Achievements are stored as `AchievementLog` records.
+Project positioning: EcoTransit V1 is a professional full-stack
+web application prototype designed for demonstration, internship
+evaluation, academic/project presentation, and further development.
 
-Achievement bonuses are added to `UserProfile.total_points` during the same atomic operation as journey completion.
 
-### Achievement reliability
 
-The implementation protects against duplicate awards.
 
-**First Steps** and **Eco Warrior** use existence checks.
+🎯 Vision
 
-**Week of Green** is evaluated through the streak transition and can be earned again after a genuine reset-and-rebuild cycle.
+EcoTransit is built around a simple idea:
 
----
 
-# 🛡️ 7. Journey Integrity
+Make every journey visible, comparable, and actionable.
 
-EcoTransit includes a SHA-256 integrity mechanism.
+A commuter should be able to record a journey, understand its estimated
+environmental impact, see how sustainable transport contributes to
+personal progress, and review their journey history over time.
 
-The integrity service:
+The platform is aligned with:
 
-* Creates a SHA-256 hash from the specified journey fields.
-* Uses Decimal quantization for stable values across database round-trips.
-* Supports tamper detection.
-* Finalizes the hash during journey completion.
+•
+SDG 11 --- Sustainable Cities and Communities
 
-```text
-Journey Data
-     │
-     ▼
-Canonical Values
-     │
-     ▼
-Decimal Quantization
-     │
-     ▼
-SHA-256
-     │
-     ▼
-Integrity Hash
-```
+•
+SDG 13 --- Climate Action
 
-> **Important:** Journey records are application records and environmental tracking information. They should not automatically be interpreted as legal proof, certified evidence, or official government records.
 
----
 
-# 🗺️ 8. Maps, Routing & Geocoding
 
-EcoTransit uses **Leaflet.js** for interactive mapping and **OpenRouteService** for routing and geocoding.
+✨ Features
 
-Supported capabilities include:
 
-* 🗺️ Interactive map display
-* 🧭 Route calculation
-* 🔎 Forward geocoding
-* 🔄 Reverse geocoding
-* 📍 Journey point visualization
 
-The application handles external routing failures through a dedicated:
 
-```text
-OpenRouteServiceError
-```
+Area V1 Capability
 
-If the OpenRouteService API is not configured:
 
-```text
-503 Service Unavailable
-```
 
-is returned by the appropriate endpoints.
 
-If the external service fails:
+🔐 Authentication User authentication, profiles,
+ownership controls
 
-```text
-502 Bad Gateway
-```
+🚶 Transport Walking, cycling, public transit,
+EV and driving/ICE modes
 
-is returned rather than exposing unpredictable failure behavior.
+🧭 Journeys Create, update, complete, view and
+review journey records
 
----
+📍 GPS Browser-based live journey tracking
+and journey points
 
-# 📚 9. Journey History
+🗺️ Maps Leaflet map interface with
+route/geocoding integration
 
-EcoTransit provides journey history and journey-detail views.
+🌱 Carbon Baseline-vs-actual estimated CO₂
+savings
 
-Users can review their recorded journeys and associated information through the application.
+🏆 Gamification Points, achievements and
+sustainable-day streaks
 
-The frontend includes:
+📚 History Historical journeys with preserved
+calculation snapshots
 
-* Dashboard
-* Live tracking
-* Journey history
-* Journey detail
-* User profile
-* Points information
-* Streak information
-* Achievement information
+📊 Analytics Personal dashboard and staff/admin
+analytics
 
----
+📤 Exports CSV, JSON and PDF journey reports
 
-# 📤 10. Journey Exports
+🔏 Integrity SHA-256 journey integrity hashes
 
-Users can export their own journey data in multiple formats:
+🧪 Quality 150 automated tests
 
-```text
-CSV
-JSON
-PDF
-```
+⚙️ Deployment SQLite locally, PostgreSQL through
+DATABASE_URL, Gunicorn +
+WhiteNoise
 
-### Export endpoints
+🛡️ Security Ownership checks, environment
+secrets, production security
+settings
 
-```text
-/api/export/journeys.csv
-/api/export/journeys.json
-/api/export/journeys.pdf
-```
+📝 Auditability Append-only audit-log design and
+deterministic calculations
 
-Exports are ownership-scoped.
 
-A user can export their own journeys without receiving another user's records.
 
-PDF generation is intentionally synchronous in V1.
 
----
+🖼️ Product Screens & Visuals
 
-# 🔐 11. Security & Ownership
+Dashboard
 
-Security is treated as part of the application architecture rather than an afterthought.
 
-API resources are scoped through the authenticated Django user:
 
-```python
-request.user
-```
 
-The application does not trust a client-supplied user ID for ownership.
 
-For example, an unauthorized journey lookup returns:
 
-```text
-404 Not Found
-```
 
-rather than exposing whether another user's resource exists through a permission error.
 
-### Security configuration
 
-When:
 
-```text
-DEBUG=False
-```
 
-the application automatically enables production-oriented security behavior, including:
+The dashboard brings together the user's sustainability metrics, journey
+activity, progress, and core actions in one place.
 
-* HSTS
-* Secure cookies
-* SSL redirect
-* Allowed-host configuration
-* CSRF trusted-origin configuration
 
-Secrets and environment-specific configuration remain outside the source code.
 
----
 
-# 🏗️ Architecture
+Live Tracking & Map
 
-```text
-EcoTransit/
+
+
+
+
+
+
+
+
+
+
+The map experience supports journey capture using browser geolocation,
+route visualization, and the configured routing/geocoding services.
+
+
+
+
+Gamification
+
+
+
+
+
+
+
+
+
+
+
+Achievements, points, and streaks turn repeated sustainable travel into
+visible progress.
+
+
+
+
+Journey History
+
+
+
+
+
+
+
+
+
+
+
+Journey history preserves completed records and their calculation
+snapshots so later emission-factor changes do not silently rewrite
+historical results.
+
+
+
+
+🧩 Core Journey Flow
+
+Plain Text
+
+
+┌──────────────────┐
+│ Start a Journey  │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ Capture Route /  │
+│ GPS Journey Data │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ Determine Mode + │
+│ Distance         │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ Calculate Actual │
+│ Emissions        │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ Compare with     │
+│ Car Baseline     │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ Save Historical  │
+│ Snapshots        │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ Award Points +   │
+│ Update Streaks   │
+└────────┬─────────┘
+         ↓
+┌──────────────────┐
+│ History / Export │
+│ / Analytics      │
+└──────────────────┘
+
+
+
+
+
+
+🌍 Problem & Project Foundation
+
+Urban commuters often lack a simple way to connect daily transport
+choices with measurable environmental impact.
+
+EcoTransit addresses three practical gaps:
+
+1.
+Visibility --- users can see the estimated carbon impact of
+their journeys.
+
+2.
+Engagement --- points, achievements, and streaks make
+sustainable travel progress visible.
+
+3.
+Data --- aggregated staff-facing analytics can help demonstrate
+mobility patterns within the prototype.
+
+Target Users
+
+•
+Urban commuters --- track everyday travel and environmental
+impact.
+
+•
+Students and campuses --- use gamified milestones to encourage
+sustainable mobility.
+
+•
+Municipal / planning stakeholders --- explore aggregated
+mobility insights within the prototype.
+
+•
+Environmental users / advocates --- inspect transparent
+calculation rules and journey metrics.
+
+
+
+
+🌱 SDG Alignment
+
+SDG 11 --- Sustainable Cities and Communities
+
+EcoTransit promotes lower-emission urban transport choices such as:
+
+•
+Walking
+
+•
+Cycling
+
+•
+Public transit
+
+•
+Electric vehicles
+
+SDG 13 --- Climate Action
+
+EcoTransit quantifies estimated carbon savings for journeys relative to
+a configured private-car baseline.
+
+
+EcoTransit measures estimated emissions and savings. It does not
+issue verified carbon offsets.
+
+
+
+
+🏗️ Architecture
+
+
+
+
+
+
+
+
+
+
+
+Plain Text
+
+
+                         ┌──────────────────────┐
+                         │     Web Browser      │
+                         │ HTML / CSS / JS      │
+                         │ Leaflet.js / GPS     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │       Django        │
+                         │ Views / Forms / API │
+                         └──────────┬───────────┘
+                                    │
+                 ┌──────────────────┼──────────────────┐
+                 ▼                  ▼                  ▼
+        ┌────────────────┐ ┌────────────────┐ ┌────────────────┐
+        │ Service Layer  │ │ Domain Models  │ │ API Layer      │
+        │ Carbon         │ │ Journeys       │ │ JSON endpoints │
+        │ Gamification   │ │ Profiles       │ │ Validation     │
+        │ Integrity      │ │ Factors        │ │ Permissions    │
+        │ OpenRoute      │ │ Achievements   │ │ Exports        │
+        └───────┬────────┘ └───────┬────────┘ └────────────────┘
+                │                  │
+                └──────────┬───────┘
+                           ▼
+                 ┌────────────────────┐
+                 │ SQLite / PostgreSQL│
+                 └────────────────────┘
+
+External integration:
+Browser GPS ──► Journey Points
+OpenRouteService ──► Routing / Geocoding
+
+
+
+
+
+
+🧱 Project Structure
+
+Plain Text
+
+
+ecotransit/
+├── manage.py
+├── requirements.txt
+├── .env.example
+├── README.md
 │
 ├── ecotransit/
 │   ├── settings.py
 │   ├── urls.py
 │   ├── wsgi.py
-│   └── asgi.py
+│   └── ...
 │
 ├── core/
 │   ├── models.py
-│   ├── views.py
-│   ├── admin.py
-│   │
-│   ├── api/
-│   │   ├── exports.py
-│   │   └── ...
-│   │
+│   ├── views/
 │   ├── services/
 │   │   ├── carbon.py
-│   │   ├── distance.py
+│   │   ├── gamification.py
 │   │   ├── integrity.py
-│   │   ├── openroute.py
-│   │   └── gamification.py
-│   │
-│   ├── templates/
-│   │   ├── public/
-│   │   ├── auth/
-│   │   ├── dashboard/
-│   │   ├── trips/
-│   │   ├── calculator/
-│   │   ├── map/
-│   │   ├── feedback/
-│   │   ├── admin/
-│   │   └── errors/
-│   │
-│   └── static/
+│   │   └── openroute.py
+│   ├── forms/
+│   ├── api/
+│   ├── management/
+│   │   └── commands/
+│   │       └── seed_demo.py
+│   └── tests/
+│
+├── templates/
+│   ├── public/
+│   ├── auth/
+│   ├── dashboard/
+│   ├── trips/
+│   ├── calculator/
+│   ├── map/
+│   ├── feedback/
+│   ├── admin/
+│   └── errors/
 │
 ├── docs/
 │   ├── ARCHITECTURE.md
@@ -476,710 +483,821 @@ EcoTransit/
 │   ├── SETUP.md
 │   ├── DEPLOYMENT.md
 │   ├── TESTING.md
-│   └── PROJECT_REPORT.md
+│   ├── PROJECT_REPORT.md
+│   ├── EcoTransit-V1-Presentation.pptx
+│   └── assets/
+│       ├── ecotransit-dashboard-hero.png
+│       ├── ecotransit-live-tracking-map.png
+│       ├── ecotransit-gamification-achievement.png
+│       ├── ecotransit-journey-history.png
+│       ├── ecotransit-architecture-flow.png
+│       └── presentation/
+│           ├── slide-01.png
+│           ├── slide-02.png
+│           ├── ...
+│           └── slide-11.png
 │
-├── manage.py
-├── requirements.txt
-├── .env.example
-└── README.md
-```
+└── static/
+    └── ...
 
----
 
-# 🧠 Application Architecture
 
-EcoTransit separates presentation, API handling, domain models, and business logic.
 
-```text
-┌───────────────────────────────────────────┐
-│               Frontend                    │
-│ HTML • CSS • JavaScript • Leaflet.js     │
-└────────────────────┬──────────────────────┘
-                     │
-                     ▼
-┌───────────────────────────────────────────┐
-│              Django Views                 │
-│       HTML Views + JSON API Views         │
-└────────────────────┬──────────────────────┘
-                     │
-                     ▼
-┌───────────────────────────────────────────┐
-│            Service Layer                  │
-│                                           │
-│ Carbon • Distance • Integrity             │
-│ OpenRouteService • Gamification            │
-└────────────────────┬──────────────────────┘
-                     │
-                     ▼
-┌───────────────────────────────────────────┐
-│              Django ORM                   │
-│                                           │
-│ TransportMode                             │
-│ UserProfile                               │
-│ Journey                                   │
-│ JourneyPoint                              │
-│ EmissionFactorSnapshot                    │
-│ AchievementLog                            │
-└────────────────────┬──────────────────────┘
-                     │
-                     ▼
-          SQLite / PostgreSQL
-```
 
----
 
-# 🧩 Domain Models
+🗃️ Domain Model
 
-EcoTransit implements six core domain models:
+The V1 design separates journey data, user progress, calculation
+factors, and integrity information.
 
-```text
+Core concepts include:
+
+•
+User / Profile
+
+•
 TransportMode
-UserProfile
+
+•
 Journey
+
+•
 JourneyPoint
+
+•
+EmissionFactor
+
+•
 EmissionFactorSnapshot
-AchievementLog
-```
 
-These represent the core data relationships required by the V1 specification.
+•
+Achievement
 
-Fields that were not explicitly named in the governing specification are marked as assumptions directly in the implementation.
+•
+UserAchievement
 
----
+•
+Feedback
 
-# ⚙️ Service Layer
+•
+AuditLog
 
-## `carbon.py`
+Historical calculation principle
 
-Responsible for:
+A completed journey stores the factor used for its calculation.
 
-* Carbon calculations
-* Driving/car baseline comparison
-* Historical emission-factor snapshots
+Plain Text
 
-## `distance.py`
 
-Responsible for:
+Current Factor
+     │
+     ├── Journey A → snapshot A
+     │
+     └── Factor changes
+              │
+              └── Journey B → snapshot B
 
-* Haversine distance calculation
-* Distance calculation from recorded GPS points
 
-## `integrity.py`
 
-Responsible for:
+Therefore, changing the active baseline does not retroactively rewrite
+Journey A.
 
-* SHA-256 hashing
-* Decimal quantization
-* Tamper detection
 
-## `openroute.py`
 
-Responsible for:
 
-* OpenRouteService communication
-* Routing
-* Forward geocoding
-* Reverse geocoding
-* External-service error handling
+🌱 Carbon Methodology
 
-## `gamification.py`
+EcoTransit uses a deterministic baseline comparison.
 
-Responsible for:
+The V1 baseline is based on a configured standard fuel-car factor,
+initially:
 
-* Points
-* Streaks
-* Achievement milestones
-* Achievement bonuses
-* Concurrency protection
-* Idempotency
+Plain Text
 
----
 
-# 🔌 API Reference
+0.12 kg CO₂ / km
 
-EcoTransit uses plain Django JSON views rather than Django REST Framework.
 
-## Journey API
 
-| Endpoint                     | Method | Purpose                       |
-| ---------------------------- | ------ | ----------------------------- |
-| `/api/journeys/`             | GET    | Authenticated user's journeys |
-| `/api/journeys/start/`       | POST   | Start a journey               |
-| `/api/journeys/<id>/points/` | POST   | Add GPS point                 |
-| `/api/journeys/<id>/stop/`   | POST   | Finalize journey              |
-| `/api/journeys/<id>/`        | GET    | Retrieve owned journey        |
+Estimated savings are calculated as:
 
-### Start a journey
+Plain Text
 
-```text
-POST /api/journeys/start/
-```
 
-Required:
+estimated_savings =
+    max(baseline_emissions - actual_emissions, 0)
 
-```text
-transport_mode
-legal_disclaimer_accepted: true
-```
 
-An already-active journey results in:
 
-```text
-409 Conflict
-```
+The system preserves the baseline factor used for each journey.
 
-### Add a point
+Important implementation rules
 
-```text
-POST /api/journeys/<id>/points/
-```
+•
+Decimal fields are preferred for environmental quantities.
 
-The sequence number is assigned automatically.
+•
+Calculation timestamps are stored.
 
-An inactive journey results in:
+•
+The active baseline is controlled so only one baseline is active.
 
-```text
-409 Conflict
-```
+•
+Historical snapshots preserve past calculations.
 
-### Complete a journey
+•
+No verified carbon offsets are issued.
 
-```text
-POST /api/journeys/<id>/stop/
-```
+•
+Carbon values represent estimates, not independently audited
+emissions reductions.
 
-The completion pipeline is:
 
-```text
-Distance
-   ↓
-Carbon
-   ↓
-Integrity Hash
-   ↓
-Points
-   ↓
-Streak
-   ↓
+
+
+🏆 Gamification Engine
+
+The gamification service separates trip-earned points from achievement
+bonuses.
+
+Journey points
+
+Plain Text
+
+
+points =
+    round(max(carbon_saved_g, 0) / 1000 * 10)
+    +
+    round(distance_km * mode_multiplier)
+
+
+
+Transport multipliers
+
+Mode Multiplier
+
+
+
+
+Walking 15 pts/km
+Cycling 15 pts/km
+Public Transit 8 pts/km
+EV 3 pts/km
+Driving / ICE 0 pts/km
+
 Achievements
-```
 
-All operations are performed atomically.
+Achievement Trigger Bonus
 
----
 
-# 🚌 Transport Modes API
 
-```text
-GET /api/transport-modes/
-```
 
-Returns active transport modes.
+First Steps First completed journey +50
+Eco Warrior Cumulative carbon saved crosses 10 kg +200
+Week of Green 7-day sustainable streak +100
 
----
+Streak rule
 
-# 👤 Profile API
+A streak is based on consecutive calendar days with at least one
+qualifying sustainable trip.
 
-```text
-GET /api/profile/
-```
+Concurrency protection
 
-Returns the authenticated user's `UserProfile`, including current points and streak information.
+Gamification updates use database transactions and select_for_update()
+to reduce race-condition risk.
 
----
+Achievement existence/idempotency checks prevent duplicate milestone
+rewards.
 
-# 🧭 Routing API
 
-```text
-GET /api/routes/
-POST /api/routes/
-```
 
-Uses OpenRouteService.
 
-Possible service responses:
+🧭 Journey Records & Integrity
 
-```text
-503 — Service not configured
-502 — External routing service failure
-```
+A completed journey can contain:
 
----
+•
+Start and end information
 
-# 🔎 Geocoding API
+•
+Transport mode
 
-```text
-GET /api/geocode/
-POST /api/geocode/
-```
+•
+Distance
 
-Supports:
+•
+Duration / timestamps
 
-* Forward geocoding
-* Reverse geocoding
+•
+Carbon calculation
 
----
+•
+Baseline factor used
 
-# 🧮 Gamification Transaction Model
+•
+Journey points
 
-One of the important architectural decisions in EcoTransit is that gamification does not operate independently from journey completion.
+•
+GPS journey points where applicable
 
-The completion process is effectively:
+•
+Integrity hash
 
-```text
-BEGIN TRANSACTION
-        │
-        ▼
-Finalize Journey
-        │
-        ▼
-Calculate Distance
-        │
-        ▼
-Calculate Carbon
-        │
-        ▼
-Generate Integrity Hash
-        │
-        ▼
-Lock UserProfile
-        │
-        ▼
-Calculate Points
-        │
-        ▼
-Update Streak
-        │
-        ▼
-Evaluate Achievements
-        │
-        ▼
-COMMIT
-```
+•
+Historical calculation snapshot
 
-If an operation fails:
+SHA-256 integrity
 
-```text
-ROLLBACK
-```
+Journey records use SHA-256 hashing as an integrity mechanism.
 
-This prevents partially completed journey states.
+The integrity service helps detect changes to the signed journey
+representation.
 
----
 
-# 🔒 Concurrency & Idempotency
+The integrity hash is a tamper-detection mechanism; it does not
+make a journey record an official government or legal record.
 
-The user's `UserProfile` is row-locked using:
 
-```python
-select_for_update()
-```
 
-during the gamification operation.
 
-This protects:
+📍 Maps, GPS & Routing
 
-* `total_points`
-* streak counters
-* achievement awards
+EcoTransit uses:
 
-against concurrent completion requests.
+•
+Leaflet.js for map rendering
 
-Cumulative achievements additionally perform existence checks so a milestone cannot accidentally be awarded multiple times.
+•
+Browser geolocation for live journey capture
 
----
+•
+OpenRouteService for routing and geocoding
 
-# 🗄️ Database Support
+•
+Configurable external-service settings rather than hard-wiring a
+public geocoding endpoint
 
-## Local Development
+The platform is designed around foreground/manual user-controlled
+journey capture. V1 does not introduce background tracking.
 
-SQLite is used automatically.
 
-No separate database server is required.
 
-## PostgreSQL
 
-Set:
+🔌 API Reference
 
-```env
-DATABASE_URL=postgres://user:password@localhost:5432/ecotransit
-```
+Journeys
 
-PostgreSQL takes precedence over SQLite when `DATABASE_URL` is configured.
+Plain Text
 
-The project includes `psycopg2-binary` for PostgreSQL connectivity.
 
----
+GET  /api/journeys/
+POST /api/journeys/start/
+GET  /api/journeys/<id>/
+POST /api/journeys/<id>/points/
+POST /api/journeys/<id>/stop/
 
-# 🛠️ Technology Stack
 
-| Layer               | Technology                      |
-| ------------------- | ------------------------------- |
-| Language            | Python                          |
-| Web Framework       | Django                          |
-| Local Database      | SQLite                          |
-| Production Database | PostgreSQL                      |
-| Frontend            | HTML / CSS / Vanilla JavaScript |
-| Mapping             | Leaflet.js                      |
-| Routing             | OpenRouteService                |
-| Geocoding           | OpenRouteService                |
-| API                 | Django JSON Views               |
-| Authentication      | Django Authentication           |
-| Hashing             | SHA-256                         |
-| Configuration       | django-decouple                 |
-| Static Files        | Whitenoise                      |
-| Production Server   | Gunicorn / Uvicorn              |
-| Testing             | Django Test Framework           |
 
----
+Supporting endpoints
 
-# ⚡ Quick Start
+Plain Text
 
-## 1. Clone
 
-```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd ecotransit
-```
+GET  /api/transport-modes/
+GET  /api/profile/
+GET  /api/routes/
+GET  /api/geocode/
 
-Replace `<YOUR_GITHUB_REPOSITORY_URL>` with your repository URL.
 
----
 
-## 2. Create a virtual environment
+Exports
 
-### Windows
+Plain Text
 
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
 
-### Linux / macOS
+GET /api/export/journeys.csv
+GET /api/export/journeys.json
+GET /api/export/journeys.pdf
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
 
----
 
-## 3. Install dependencies
+External-service failure handling
 
-```bash
-pip install -r requirements.txt
-```
+The API distinguishes configuration and upstream failures, including:
 
----
+Plain Text
 
-## 4. Create environment configuration
 
-### Windows
+503 → routing/geocoding service not configured
+502 → configured external service failed
 
-```bash
-copy .env.example .env
-```
 
-### Linux / macOS
 
-```bash
-cp .env.example .env
-```
+Authentication, CSRF protection, ownership validation, and request
+validation remain part of the API design.
 
-Then edit `.env`.
 
-For anything beyond throwaway local testing, configure a real:
 
-```env
-DJANGO_SECRET_KEY=your-secure-secret-key
-```
 
----
+📤 Data Export
 
-## 5. Run migrations
+Users can export journey information in:
 
-```bash
-python manage.py migrate
-```
+•
+CSV
 
----
+•
+JSON
 
-## 6. Create an administrator
+•
+PDF
 
-```bash
-python manage.py createsuperuser
-```
+PDF generation uses ReportLab.
 
----
+Exports are intentionally synchronous in V1. No Celery, Redis, or
+background worker infrastructure is introduced.
 
-## 7. Start EcoTransit
 
-```bash
-python manage.py runserver
-```
 
----
 
-# 🌐 Application URLs
+🔐 Security & Privacy
 
-| Interface           | URL                                      |
-| ------------------- | ---------------------------------------- |
-| 🌱 Main Application | `http://127.0.0.1:8000/`                 |
-| 🔐 Admin            | `http://127.0.0.1:8000/admin/`           |
-| 📈 Admin Analytics  | `http://127.0.0.1:8000/admin/analytics/` |
-| 🔌 API              | `http://127.0.0.1:8000/api/`             |
+EcoTransit applies several security principles:
 
-The main frontend redirects to `/login/` when authentication is required.
+Ownership
 
----
+Journey access is tied to request.user.
 
-# 🧪 Testing
+Unauthorized access to another user's journey should resolve without
+exposing that journey's existence.
 
-EcoTransit includes a comprehensive automated test suite.
+Production configuration
 
-## Current status
+When DEBUG=False, production-oriented settings can enable:
 
-```text
-150 tests
-150 passing
+•
+HSTS
+
+•
+Secure cookies
+
+•
+SSL redirect
+
+•
+Allowed hosts
+
+•
+CSRF trusted origins
+
+Secrets
+
+Secrets and deployment configuration belong in environment variables
+rather than source control.
+
+Privacy
+
+The application avoids introducing unnecessary background tracking and
+keeps journey ownership explicit.
+
+
+
+
+🧪 Testing
+
+V1 Test Status
+
+Plain Text
+
+
+150 automated tests
 0 regressions
-```
 
-### Test distribution
 
-| Test File                    | Tests | Coverage                                                                                                    |
-| ---------------------------- | ----: | ----------------------------------------------------------------------------------------------------------- |
-| `core/tests.py`              |    33 | Domain models, relationships, validation, `__str__`, cascade, `SET_NULL`, `PROTECT`                         |
-| `core/test_services.py`      |    32 | Carbon calculation, OpenRouteService wrapper, SHA-256 hashing, tamper detection                             |
-| `core/tests_api.py`          |    44 | Journey API lifecycle, authentication, ownership, transport modes, profile, routes, geocoding, gamification |
-| `core/tests_exports.py`      |    16 | CSV, JSON, PDF exports, ownership scoping, admin analytics                                                  |
-| `core/tests_gamification.py` |    25 | Points, streaks, achievements, idempotency                                                                  |
 
----
+Test Area Tests
 
-## Run tests
 
-```bash
-python manage.py test
-```
 
----
 
-# 🔍 Django System Checks
+core/tests.py 33
+core/test_services.py 32
+core/tests_api.py 44
+core/tests_exports.py 16
+core/tests_gamification.py 25
+Total 150
 
-Run:
+Validation commands:
 
-```bash
+Bash
+
+
 python manage.py check
-```
-
-For deployment-oriented checks:
-
-```bash
 python manage.py check --deploy
-```
+python manage.py test
 
-The project has been verified under both development and production-like configuration.
 
-The production-like configuration uses:
 
-```text
-DJANGO_DEBUG=False
-```
+The production-like deployment configuration was validated with zero
+deployment warnings in the documented V1 verification.
 
-along with a genuinely random secret key and real allowed hosts.
 
-The production-like configuration produced:
 
-```text
-0 deployment warnings
-```
 
----
+📊 Presentation & Project Story
 
-# 🌐 Environment Variables
+The accompanying EcoTransit V1 presentation presents the project as
+an AI-for-sustainability internship prototype and covers the foundation,
+problem, target users, solution, architecture, workflow, testing,
+responsible design, expected impact, and conclusion.
 
-EcoTransit uses environment-driven configuration through `django-decouple`.
+Presentation deck:
+docs/EcoTransit-V1-Presentation.pptx
 
-Important variables include:
+Presentation Highlights
 
-```env
-DJANGO_SECRET_KEY=
-DJANGO_DEBUG=
-DJANGO_ALLOWED_HOSTS=
-DJANGO_CSRF_TRUSTED_ORIGINS=
-DATABASE_URL=
-OPENROUTESERVICE_API_KEY=
-```
+01 --- Cover
 
-### Security rule
 
-Never commit real credentials or secrets to GitHub.
 
-Use:
 
-```text
+
+
+
+
+
+
+
+02 --- Foundation & SDG Alignment
+
+
+
+
+
+
+
+
+
+
+
+03 --- Problem Statement
+
+
+
+
+
+
+
+
+
+
+
+04 --- Empathize & Target Users
+
+
+
+
+
+
+
+
+
+
+
+05 --- Technical & Solution Overview
+
+
+
+
+
+
+
+
+
+
+
+06 --- Architecture & Gamification
+
+
+
+
+
+
+
+
+
+
+
+07 --- Prototype & Live Demo Workflow
+
+
+
+
+
+
+
+
+
+
+
+08 --- Robust Quality & Testing
+
+
+
+
+
+
+
+
+
+
+
+09 --- Responsible AI & Ethics
+
+
+
+
+
+
+
+
+
+
+
+10 --- Impact Statement & Expected Outcomes
+
+
+
+
+
+
+
+
+
+
+
+11 --- Conclusion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🧠 Service Layer
+
+The service-oriented implementation keeps important business rules
+outside presentation code.
+
+Plain Text
+
+
+core/services/
+├── carbon.py
+├── gamification.py
+├── integrity.py
+└── openroute.py
+
+
+
+carbon.py
+
+Responsible for deterministic emission and savings calculations.
+
+gamification.py
+
+Responsible for:
+
+•
+journey points
+
+•
+mode multipliers
+
+•
+achievements
+
+•
+streak validation
+
+•
+transaction safety
+
+integrity.py
+
+Responsible for deterministic journey hashing and integrity
+verification.
+
+openroute.py
+
+Responsible for routing/geocoding integration and external-service error
+handling.
+
+
+
+
+⚙️ Database & Deployment
+
+Local development
+
+Plain Text
+
+
+SQLite
+
+
+
+Production-capable database configuration
+
+Plain Text
+
+
+PostgreSQL via DATABASE_URL
+
+
+
+Application serving
+
+Plain Text
+
+
+Gunicorn + WhiteNoise
+
+
+
+Configuration
+
+Plain Text
+
+
 .env.example
-```
 
-as the safe configuration template.
 
----
 
-# 🧭 OpenRouteService Setup
+Sensitive values should be supplied through environment variables.
 
-Routing and geocoding require an OpenRouteService API key.
 
-Configure:
 
-```env
-OPENROUTESERVICE_API_KEY=your_api_key_here
-```
 
-When no key is configured, routing/geocoding endpoints intentionally return a controlled `503` response.
+🚀 Quick Start
 
-When the external service itself fails, the application returns a controlled `502` response.
+1. Clone
 
----
+Bash
 
-# 📈 Admin Analytics
 
-EcoTransit provides a staff-only analytics page:
+git clone <YOUR-REPOSITORY-URL>
+cd ecotransit
 
-```text
-/admin/analytics/
-```
 
-The current implementation intentionally exposes **aggregate platform statistics only**.
 
-It does not provide per-user analytics through the admin analytics interface.
+2. Create a virtual environment
 
----
+Windows
 
-# 👤 User Management
+Bash
 
-The current V1 intentionally does not include:
 
-* Public registration/signup
-* Password-reset email flow
+python -m venv .venv
+.venv\Scripts\activate
 
-Users can be created using:
 
-```bash
-python manage.py createsuperuser
-```
 
-or through Django Admin.
+Linux / macOS
 
-This is an intentional V1 scope decision.
+Bash
 
----
 
-# 🧠 Engineering Highlights
+python3 -m venv .venv
+source .venv/bin/activate
 
-EcoTransit is more than a CRUD application.
 
-Several implementation decisions were made specifically to preserve consistency and maintainability.
 
-### Historical data protection
+3. Install dependencies
 
-Emission factors are snapshotted when journeys are calculated.
+Bash
 
-### Atomic journey completion
 
-Carbon, integrity, points, streaks, and achievements are finalized within one transaction.
+pip install -r requirements.txt
 
-### Concurrency protection
 
-`select_for_update()` protects user-level gamification state.
 
-### API ownership
+4. Configure environment
 
-Authenticated user ownership is enforced server-side.
+Bash
 
-### Controlled external APIs
 
-OpenRouteService failures are normalized.
+copy .env.example .env
 
-### Stable hashing
 
-Decimal values are quantized before hashing to reduce inconsistencies across database round-trips.
 
-### Explicit assumptions
+Use the appropriate copy command for your operating system.
 
-Non-specified implementation assumptions are identified in the code.
+Configure required values such as:
 
-### Focused architecture
+Plain Text
 
-V1 avoids unnecessary infrastructure such as Celery, Redis, and DRF.
 
----
+SECRET_KEY
+DEBUG
+ALLOWED_HOSTS
+DATABASE_URL
+OPENROUTESERVICE_API_KEY
 
-# 🚫 Explicit V1 Scope Boundaries
 
-The following are intentionally **not implemented** in V1:
 
-```text
-AI / RAG
-Blockchain
-Payments
-Social features
-Celery
-Redis
-Background workers
-Per-user admin analytics
-Public registration/signup
-Password-reset email flow
-```
+5. Apply migrations
 
-Exports remain synchronous by design.
+Bash
 
-These exclusions are deliberate and preserve the defined V1 architecture rather than introducing infrastructure that the current project does not require.
 
----
-
-# 🏭 Production Deployment Checklist
-
-Before deploying EcoTransit:
-
-### Environment
-
-```text
-[ ] DJANGO_DEBUG=False
-[ ] Real random DJANGO_SECRET_KEY
-[ ] Correct DJANGO_ALLOWED_HOSTS
-[ ] Correct CSRF trusted origins
-[ ] Real PostgreSQL DATABASE_URL
-[ ] Real OpenRouteService API key
-```
-
-### Django
-
-```bash
 python manage.py migrate
-python manage.py collectstatic
-python manage.py check --deploy
-```
 
-### Infrastructure
 
-```text
-[ ] Production WSGI/ASGI server
-[ ] Reverse proxy
-[ ] TLS/HTTPS
-[ ] Proper static-file hosting/CDN
-[ ] Production database
-```
 
-The application security settings assume a deployment architecture with HTTPS and an appropriate reverse proxy.
+6. Create an administrator
 
----
+Bash
 
-# 📚 Documentation Structure
 
-The project documentation can be organized as:
+python manage.py createsuperuser
 
-```text
+
+
+7. Optional demo data
+
+Bash
+
+
+python manage.py seed_demo
+
+
+
+8. Run the development server
+
+Bash
+
+
+python manage.py runserver
+
+
+
+Then open:
+
+Plain Text
+
+
+http://127.0.0.1:8000/
+
+
+
+
+
+
+🌐 Main Application Areas
+
+Typical V1 areas include:
+
+Plain Text
+
+
+/
+ /about/
+ /methodology/
+ /privacy/
+ /terms/
+
+ /dashboard/
+ /profile/
+
+ /trips/
+ /calculator/
+ /map/
+ /feedback/
+
+ /admin/
+
+
+
+Exact routes should follow the repository's current URL configuration.
+
+
+
+
+📚 Documentation
+
+Recommended project documentation:
+
+Plain Text
+
+
 docs/
 ├── ARCHITECTURE.md
 ├── DATABASE.md
@@ -1188,164 +1306,231 @@ docs/
 ├── SETUP.md
 ├── DEPLOYMENT.md
 ├── TESTING.md
-└── PROJECT_REPORT.md
-```
+├── PROJECT_REPORT.md
+└── EcoTransit-V1-Presentation.pptx
 
-This README provides the high-level project overview while the documentation directory can contain deeper implementation details.
 
----
 
-# 📊 V1 Completion Status
 
-## 🟢 V1 COMPLETE
 
-```text
-Core domain models          ✅
-User profiles              ✅
-Transport modes            ✅
-Journey lifecycle          ✅
-GPS points                 ✅
-Distance calculation       ✅
-Carbon calculation         ✅
-Emission snapshots         ✅
-Integrity hashing          ✅
-Leaflet maps               ✅
-OpenRouteService routing   ✅
-Geocoding                  ✅
-Journey history            ✅
-Journey details            ✅
-CSV export                 ✅
-JSON export                ✅
-PDF export                 ✅
-Green points               ✅
-Streak tracking            ✅
-Achievements               ✅
-Admin analytics            ✅
-Ownership enforcement      ✅
-Security configuration     ✅
-Automated testing          ✅
-Deployment checks          ✅
-```
 
-### 🧪 Test Result
+🚫 V1 Scope Boundaries
 
-```text
-┌─────────────────────────────┐
-│      ECOTRANSIT V1          │
-│                             │
-│     150 TESTS PASSING       │
-│        0 REGRESSIONS        │
-│                             │
-│          STATUS: ✅          │
-└─────────────────────────────┘
-```
+The following are intentionally outside V1:
 
----
+•
+❌ AI / RAG
 
-# 🔮 Future Evolution
+•
+❌ Blockchain
 
-The current V1 is intentionally focused.
+•
+❌ Payments
 
-Future development should be introduced through deliberate specification changes rather than silently expanding the existing architecture.
+•
+❌ Social features
 
-Potential future directions may include:
+•
+❌ Celery
 
-* Expanded transport options
-* Additional mobility analytics
-* More advanced visualizations
-* Additional environmental indicators
-* Deeper journey insights
-* Additional mobility integrations
-* Asynchronous processing if real workload eventually justifies it
+•
+❌ Redis
 
-These are future possibilities, not current V1 requirements.
+•
+❌ Background workers
 
----
+•
+❌ Per-user admin analytics
 
-# 🌱 Project Philosophy
+•
+❌ Public registration/signup
 
-EcoTransit is built around a simple principle:
+•
+❌ Password-reset email workflow
 
-> **Make sustainable mobility measurable, understandable, and engaging.**
+•
+❌ Background GPS tracking
 
-The platform connects:
+•
+❌ Verified carbon offsets
 
-```text
-MOBILITY
-   +
-LOCATION
-   +
-DISTANCE
-   +
-ENVIRONMENTAL IMPACT
-   +
-GAMIFICATION
-   =
-VISIBLE SUSTAINABLE PROGRESS
-```
+These exclusions keep the V1 implementation focused on the frozen
+project specification.
 
-A journey becomes more than a start point and destination.
 
-It becomes a measurable record of movement, environmental impact, personal progress, and sustainable behavior.
 
----
 
-# ⚠️ Important Disclaimer
+🔮 Future Evolution
 
-EcoTransit provides **estimated environmental-impact calculations and digital journey records** based on information available to the application.
+Potential future versions may explore:
 
-EcoTransit does not claim that its journey records are:
+•
+richer route intelligence
 
-* Certified legal evidence
-* Official government records
-* Verified carbon offsets
-* Independently audited emissions reductions
-* A substitute for official transport documentation
-* A substitute for certified environmental documentation
-* A substitute for legal advice or official legal evidence
+•
+larger-scale aggregated mobility analytics
 
-Where legal, regulatory, environmental, or professional certification is required, users should rely on the appropriate official authorities and certified records.
+•
+improved accessibility
 
----
+•
+additional transport modes
 
-# 📄 License
+•
+configurable regional emission datasets
 
-Add the repository's actual chosen license here.
+•
+stronger deployment observability
+
+•
+optional AI-assisted insights
+
+Future work should be introduced deliberately without silently changing
+the V1 data model or calculation rules.
+
+
+
+
+🧭 Project Philosophy
+
+EcoTransit is designed around five principles:
+
+1. Measure
+
+Turn journeys into structured data.
+
+2. Compare
+
+Use a transparent baseline methodology.
+
+3. Reward
+
+Make sustainable behavior visible through points and achievements.
+
+4. Preserve
+
+Keep historical calculation snapshots stable.
+
+5. Explain
+
+Prefer deterministic, auditable rules over opaque behavior.
+
+
+
+
+⚠️ Important Disclaimer
+
+EcoTransit journey records are not:
+
+•
+certified legal evidence
+
+•
+official government records
+
+•
+verified carbon offsets
+
+•
+independently audited emissions reductions
+
+•
+a substitute for official documentation
+
+•
+a substitute for legal advice
+
+Journey records and environmental calculations are provided for personal
+tracking, demonstration, analytics, and sustainability-awareness
+purposes.
+
+
+
+
+📈 V1 Completion Snapshot
+
+Plain Text
+
+
+Core Django Application       ✅
+Authentication / Profiles     ✅
+Journey Management            ✅
+GPS Journey Capture           ✅
+Leaflet Maps                  ✅
+Routing / Geocoding           ✅
+Carbon Calculations           ✅
+Historical Snapshots          ✅
+Gamification                  ✅
+Achievements                  ✅
+Streaks                       ✅
+Journey Integrity Hashing     ✅
+CSV / JSON / PDF Exports      ✅
+Feedback                      ✅
+Staff/Admin Analytics         ✅
+Emission Factor Management    ✅
+Automated Tests               ✅
+Production Checks             ✅
+Documentation                 ✅
+Presentation                  ✅
+
+
+
+
+
+
+🛠️ Technology Stack
+
+Layer Technology
+
+
+
+
+Language Python
+Backend Django
+Frontend HTML, CSS, Vanilla JavaScript
+Maps Leaflet.js
+Routing / Geocoding OpenRouteService
+Local DB SQLite
+Production DB PostgreSQL
+Serving Gunicorn
+Static Files WhiteNoise
+PDF Export ReportLab
+Integrity SHA-256
+Testing Django/Python test suite
+
+
+
+
+📄 License
+
+Add the project's chosen open-source license here.
 
 For example:
 
-```text
+Plain Text
+
+
 MIT License
-```
 
-If the project uses a different license, replace the example with the correct license information.
 
----
 
-# 👨‍💻 Project
+Do not claim a license until the repository actually contains the
+corresponding license file.
 
-**EcoTransit**
 
-### Smart Urban Mobility & Environmental-Impact Platform
 
-```text
-Track.
-Measure.
-Understand.
-Move Sustainably.
-```
 
-🌱 **Every journey can tell a story about its impact.**
+🌱 Final Note
 
----
 
-<p align="center">
-  Built with Python • Django • Leaflet.js • OpenRouteService
-</p>
+One journey at a time. One measurable choice at a time.
 
-<p align="center">
-  <strong>EcoTransit V1 — Complete</strong>
-</p>
+EcoTransit V1 demonstrates how a full-stack web application can connect
+mobility tracking, transparent carbon estimation, gamification,
+historical data, and responsible software design into one coherent
+sustainability platform.
+
+
 
 
 ## 📺 Project Demo & Presentation
