@@ -587,74 +587,6 @@ The accompanying **EcoTransit V1 presentation** presents the project as an AI-fo
 
 ---
 
-# 🖼️ Presentation Highlights
-
-## 01 — Cover
-
-![EcoTransit V1 presentation — cover](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-01.png)
-
----
-
-## 02 — Foundation & SDG Alignment
-
-![EcoTransit V1 presentation — SDG alignment](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-02.png)
-
----
-
-## 03 — Problem Statement
-
-![EcoTransit V1 presentation — problem statement](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-03.png)
-
----
-
-## 04 — Empathize & Target Users
-
-![EcoTransit V1 presentation — target users](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-04.png)
-
----
-
-## 05 — Technical & Solution Overview
-
-![EcoTransit V1 presentation — solution overview](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-05.png)
-
----
-
-## 06 — Architecture & Gamification
-
-![EcoTransit V1 presentation — architecture and gamification](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-06.png)
-
----
-
-## 07 — Prototype & Live Demo Workflow
-
-![EcoTransit V1 presentation — workflow](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-07.png)
-
----
-
-## 08 — Robust Quality & Testing
-
-![EcoTransit V1 presentation — testing](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-08.png)
-
----
-
-## 09 — Responsible AI & Ethics
-
-![EcoTransit V1 presentation — responsible design](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-09.png)
-
----
-
-## 10 — Impact Statement & Expected Outcomes
-
-![EcoTransit V1 presentation — impact](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-10.png)
-
----
-
-## 11 — Conclusion
-
-![EcoTransit V1 presentation — conclusion](https://raw.githubusercontent.com/saviochackoxavier-tech/ecotransit-sustainability-app/main/assets/presentation/slide-11.png)
-
----
-
 # 🧠 Service Layer
 
 The service-oriented implementation keeps important business rules outside presentation code.
@@ -1023,16 +955,4 @@ EcoTransit V1 demonstrates how a full-stack web application can connect mobility
   Built by <strong>Savio Chacko Xavier</strong> · 2026
 </p>
 
-## 📺 Project Demo & Presentation
 
-Want to see the project in action? Check out the video walkthrough and presentation assets:
-
-* 🎥 **[Watch the Project Demo on Google Drive](https://drive.google.com/file/d/1W1z4iBQhO_GHhJMmgiKvM6NBgVcYGnj3/view?usp=sharing)** *(Make sure your Google Drive link is set to "Anyone with the link can view")*
-
----
-
-## License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for full terms.
-
-Copyright (c) 2026 Savio Chacko Xavier
