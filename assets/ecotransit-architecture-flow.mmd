@@ -1,0 +1,20 @@
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#EEF2EF", "primaryTextColor": "#1F3D2E", "primaryBorderColor": "#1F3D2E", "lineColor": "#C98A2C", "secondaryColor": "#FFFFFF", "tertiaryColor": "#D9E2DB", "fontFamily": "IBM Plex Sans"}}}%%
+flowchart LR
+    U["User browser\nDjango templates + Tailwind"] --> V["Dashboard / Tracking / History / Profile"]
+    V --> L["Leaflet.js\nGPS point capture"]
+    L --> API["Django JSON API\n/api/journeys · /api/routes · /api/geocode"]
+    API --> J["Journey domain\nJourney + JourneyPoint"]
+    API --> ORS["OpenRouteService\nRouting + geocoding"]
+    J --> CARB["Carbon service\nDistance + emissions snapshot"]
+    J --> INT["Integrity service\nSHA-256 journey hash"]
+    J --> GAME["Gamification service\nPoints · streaks · badges"]
+    CARB --> DB[("SQLite / PostgreSQL")]
+    INT --> DB
+    GAME --> DB
+    J --> DB
+    classDef ui fill:#EEF2EF,stroke:#1F3D2E,color:#1F3D2E,stroke-width:2px;
+    classDef core fill:#FFFFFF,stroke:#1F3D2E,color:#1F3D2E,stroke-width:2px;
+    classDef accent fill:#FFF7E8,stroke:#C98A2C,color:#1F3D2E,stroke-width:2px;
+    class U,V,L ui;
+    class API,J,ORS,DB core;
+    class CARB,INT,GAME accent;
