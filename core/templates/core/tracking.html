@@ -1,0 +1,76 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Track a journey — EcoTransit{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+<div class="max-w-5xl mx-auto px-6 py-8">
+    <h1 class="text-xl font-semibold mb-4">Track a journey</h1>
+
+    <div id="setup-panel" class="border border-sageline bg-white rounded px-5 py-4 mb-6 {% if active_journey %}hidden{% endif %}">
+        <div class="flex flex-wrap items-end gap-4">
+            <div>
+                <label for="transport-mode" class="block text-sm text-slate mb-1">Transport mode</label>
+                <select id="transport-mode" class="border border-sageline rounded px-3 py-2 bg-white text-sm">
+                    {% for mode in transport_modes %}
+                    <option value="{{ mode.code }}">{{ mode.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <label class="flex items-center gap-2 text-sm">
+                <input type="checkbox" id="location-consent">
+                I consent to this browser sharing my location to record this journey.
+            </label>
+            <button id="start-btn"
+                    class="bg-pine text-white rounded px-4 py-2 text-sm font-medium hover:bg-pine/90 transition-colors">
+                Start journey
+            </button>
+        </div>
+        <p id="setup-error" class="text-sm text-red-700 mt-3 hidden"></p>
+    </div>
+
+    <div id="active-panel" class="{% if not active_journey %}hidden{% endif %}">
+        <div class="flex items-center justify-between mb-3">
+            <p class="text-sm text-slate">
+                Recording <span id="active-mode-label">{% if active_journey %}{{ active_journey.transport_mode.name }}{% endif %}</span>
+                &middot; <span id="point-count">0</span> points logged
+            </p>
+            <button id="stop-btn"
+                    class="bg-amber text-white rounded px-4 py-2 text-sm font-medium hover:bg-amber/90 transition-colors">
+                Stop journey
+            </button>
+        </div>
+        <div id="map"></div>
+        <p id="tracking-error" class="text-sm text-red-700 mt-3 hidden"></p>
+    </div>
+
+    <div id="result-panel" class="hidden border border-sageline bg-white rounded px-5 py-5 mt-6">
+        <h2 class="text-sm font-medium text-slate mb-3">Journey complete</h2>
+        <div class="grid grid-cols-3 gap-4 text-sm">
+            <div>
+                <p class="text-slate mb-1">Distance</p>
+                <p id="result-distance" class="stat-figure text-lg"></p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Carbon saved</p>
+                <p id="result-carbon" class="stat-figure text-lg"></p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Points earned</p>
+                <p id="result-points" class="stat-figure text-lg text-amber"></p>
+            </div>
+        </div>
+        <p id="result-achievements" class="text-sm text-amber mt-3 hidden"></p>
+        <p class="text-slate text-xs mt-3">Integrity hash: <span id="result-hash" class="stat-figure break-all"></span></p>
+        <a id="result-link" href="#" class="inline-block mt-4 text-sm text-amber hover:underline">View journey details</a>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    window.ECOTRANSIT_ACTIVE_JOURNEY_ID = {{ active_journey.pk|default:"null" }};
+</script>
+<script src="{% static 'core/js/tracking.js' %}"></script>
+{% endblock %}

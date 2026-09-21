@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+{% block title %}Journey history — EcoTransit{% endblock %}
+{% block content %}
+<div class="max-w-5xl mx-auto px-6 py-10">
+    <h1 class="text-xl font-semibold mb-6">Journey history</h1>
+
+    {% if journeys %}
+    <div class="flex gap-4 text-sm mb-6">
+        <span class="text-slate">Export all:</span>
+        <a href="{% url 'core_api:export-journeys-csv' %}" class="text-amber hover:underline">CSV</a>
+        <a href="{% url 'core_api:export-journeys-json' %}" class="text-amber hover:underline">JSON</a>
+        <a href="{% url 'core_api:export-journeys-pdf' %}" class="text-amber hover:underline">PDF</a>
+    </div>
+    {% endif %}
+
+    {% if journeys %}
+    <div class="divide-y divide-sageline border-t border-b border-sageline">
+        {% for journey in journeys %}
+        <a href="{% url 'core:journey-history-detail' journey.pk %}"
+           class="flex items-center justify-between py-3 px-2 -mx-2 hover:bg-white transition-colors">
+            <div>
+                <p class="text-sm">{{ journey.transport_mode.name }}</p>
+                <p class="text-xs text-slate">{{ journey.started_at|date:"D, j M Y, H:i" }}</p>
+            </div>
+            <div class="flex items-center gap-6 text-sm stat-figure">
+                <span>{% if journey.distance_km %}{{ journey.distance_km }} km{% else %}&mdash;{% endif %}</span>
+                <span class="text-xs px-2 py-1 rounded border border-sageline text-slate font-sans">
+                    {{ journey.get_status_display }}
+                </span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-sm text-slate border-t border-b border-sageline py-6">
+        No journeys yet. <a href="{% url 'core:track' %}" class="text-amber hover:underline">Start one.</a>
+    </p>
+    {% endif %}
+</div>
+{% endblock %}

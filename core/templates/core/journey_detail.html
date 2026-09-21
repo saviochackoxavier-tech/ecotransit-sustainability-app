@@ -1,0 +1,72 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Journey detail — EcoTransit{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+<div class="max-w-5xl mx-auto px-6 py-10">
+    <a href="{% url 'core:journey-history-list' %}" class="text-sm text-amber hover:underline">&larr; All journeys</a>
+
+    <div class="flex items-center justify-between mt-4 mb-6">
+        <h1 class="text-xl font-semibold">{{ journey.transport_mode.name }}</h1>
+        <span class="text-xs px-2 py-1 rounded border border-sageline text-slate">{{ journey.get_status_display }}</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2">
+            {% if points %}
+            <div id="map"></div>
+            {% else %}
+            <div class="border border-sageline bg-white rounded px-5 py-10 text-sm text-slate text-center">
+                No GPS points were recorded for this journey.
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="space-y-5 text-sm">
+            <div>
+                <p class="text-slate mb-1">Started</p>
+                <p class="stat-figure">{{ journey.started_at|date:"D, j M Y, H:i:s" }}</p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Ended</p>
+                <p class="stat-figure">{% if journey.ended_at %}{{ journey.ended_at|date:"D, j M Y, H:i:s" }}{% else %}&mdash;{% endif %}</p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Distance</p>
+                <p class="stat-figure">{% if journey.distance_km %}{{ journey.distance_km }} km{% else %}&mdash;{% endif %}</p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Carbon saved</p>
+                <p class="stat-figure">{% if journey.carbon_saved_g %}{{ journey.carbon_saved_g }} g CO&#8322;{% else %}&mdash;{% endif %}</p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Integrity hash</p>
+                <p class="stat-figure text-xs break-all">{% if journey.integrity_hash %}{{ journey.integrity_hash }}{% else %}&mdash;{% endif %}</p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Location consent recorded</p>
+                <p>{{ journey.legal_disclaimer_accepted|yesno:"Yes,No" }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if points %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    const map = L.map("map");
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+        maxZoom: 19,
+    }).addTo(map);
+    const latlngs = [
+        {% for point in points %}[{{ point.latitude }}, {{ point.longitude }}]{% if not forloop.last %},{% endif %}{% endfor %}
+    ];
+    const polyline = L.polyline(latlngs, { color: "#1F3D2E" }).addTo(map);
+    map.fitBounds(polyline.getBounds(), { padding: [20, 20] });
+</script>
+{% endif %}
+{% endblock %}

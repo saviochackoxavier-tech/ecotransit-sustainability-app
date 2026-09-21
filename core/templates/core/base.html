@@ -1,0 +1,64 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EcoTransit{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pine: '#1F3D2E',
+                        sage: '#EEF2EF',
+                        sageline: '#D9E2DB',
+                        amber: '#C98A2C',
+                        slate: '#4B5563',
+                    },
+                    fontFamily: {
+                        sans: ['"IBM Plex Sans"', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'core/css/app.css' %}">
+</head>
+<body class="bg-sage text-pine font-sans min-h-screen flex flex-col">
+    {% if user.is_authenticated %}
+    <header class="border-b border-sageline bg-white">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="{% url 'core:dashboard' %}" class="text-lg font-semibold tracking-tight">EcoTransit</a>
+            <nav class="flex items-center gap-6 text-sm">
+                <a href="{% url 'core:dashboard' %}" class="hover:text-amber transition-colors">Dashboard</a>
+                <a href="{% url 'core:track' %}" class="hover:text-amber transition-colors">Track a journey</a>
+                <a href="{% url 'core:journey-history-list' %}" class="hover:text-amber transition-colors">History</a>
+                <a href="{% url 'core:profile' %}" class="hover:text-amber transition-colors">Profile</a>
+                {% if user.is_staff %}
+                <a href="/admin/analytics/" class="hover:text-amber transition-colors">Admin analytics</a>
+                {% endif %}
+                <form method="post" action="{% url 'logout' %}" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="text-slate hover:text-pine transition-colors">Log out</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+    {% endif %}
+
+    <main class="flex-1 w-full">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="border-t border-sageline text-xs text-slate">
+        <div class="max-w-5xl mx-auto px-6 py-4">
+            EcoTransit — tracking sustainable journeys.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div style="max-width: 700px;">
+    <h2>Platform overview</h2>
+    <ul>
+        <li>Total journeys: {{ total_journeys }}</li>
+        <li>Active journeys: {{ active_journeys }}</li>
+        <li>Completed journeys: {{ completed_journeys }}</li>
+        <li>Total carbon saved (all users): {{ total_carbon_saved_g }} g CO&#8322;</li>
+    </ul>
+
+    <h2>Transport mode distribution</h2>
+    {% if mode_distribution %}
+    <table>
+        <thead>
+            <tr><th style="text-align:left; padding-right: 2em;">Mode</th><th style="text-align:left;">Journeys</th></tr>
+        </thead>
+        <tbody>
+            {% for row in mode_distribution %}
+            <tr>
+                <td style="padding-right: 2em;">{{ row.transport_mode__name }}</td>
+                <td>{{ row.count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No journeys recorded yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

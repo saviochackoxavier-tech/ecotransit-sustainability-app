@@ -1,0 +1,29 @@
+/* Small, deliberate additions beyond Tailwind's utility set. */
+
+#map {
+    height: 60vh;
+    min-height: 320px;
+    width: 100%;
+    border: 1px solid #D9E2DB;
+}
+
+/* Visible keyboard focus everywhere, per accessibility floor. */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 2px solid #C98A2C;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+.stat-figure {
+    font-family: "IBM Plex Mono", monospace;
+    font-variant-numeric: tabular-nums;
+}

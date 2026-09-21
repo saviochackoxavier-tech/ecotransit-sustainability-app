@@ -1,0 +1,72 @@
+{% extends "core/base.html" %}
+{% block title %}Dashboard — EcoTransit{% endblock %}
+{% block content %}
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-10">
+        <div>
+            <p class="text-slate text-sm mb-1">Total carbon saved</p>
+            <p class="stat-figure text-5xl font-medium text-pine">
+                {{ total_carbon_saved_g|floatformat:0 }}<span class="text-2xl text-slate ml-1">g CO&#8322;</span>
+            </p>
+        </div>
+        <div class="flex gap-8 text-sm">
+            <div>
+                <p class="text-slate mb-1">Journeys logged</p>
+                <p class="stat-figure text-xl">{{ total_journeys }}</p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Current streak</p>
+                <p class="stat-figure text-xl">{{ profile.current_streak_days }} day{{ profile.current_streak_days|pluralize }}</p>
+            </div>
+            <div>
+                <p class="text-slate mb-1">Points</p>
+                <p class="stat-figure text-xl">{{ profile.total_points }}</p>
+            </div>
+        </div>
+    </div>
+
+    {% if active_journey %}
+    <div class="border border-amber bg-white rounded px-5 py-4 mb-10 flex items-center justify-between">
+        <p class="text-sm">You have a journey in progress ({{ active_journey.transport_mode.name }}).</p>
+        <a href="{% url 'core:track' %}" class="text-sm font-medium text-amber hover:underline">Resume tracking</a>
+    </div>
+    {% else %}
+    <div class="mb-10">
+        <a href="{% url 'core:track' %}"
+           class="inline-block bg-pine text-white rounded px-4 py-2 text-sm font-medium hover:bg-pine/90 transition-colors">
+            Start a journey
+        </a>
+    </div>
+    {% endif %}
+
+    <div>
+        <div class="flex items-center justify-between mb-3">
+            <h2 class="text-sm font-medium text-slate">Recent journeys</h2>
+            <a href="{% url 'core:journey-history-list' %}" class="text-sm text-amber hover:underline">See all</a>
+        </div>
+
+        {% if recent_journeys %}
+        <div class="divide-y divide-sageline border-t border-b border-sageline">
+            {% for journey in recent_journeys %}
+            <a href="{% url 'core:journey-history-detail' journey.pk %}"
+               class="flex items-center justify-between py-3 hover:bg-white transition-colors px-2 -mx-2">
+                <div>
+                    <p class="text-sm">{{ journey.transport_mode.name }}</p>
+                    <p class="text-xs text-slate">{{ journey.started_at|date:"D, j M Y, H:i" }}</p>
+                </div>
+                <div class="text-right text-sm stat-figure">
+                    {% if journey.distance_km %}{{ journey.distance_km }} km{% else %}&mdash;{% endif %}
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-sm text-slate border-t border-b border-sageline py-6">
+            No journeys yet. Start one to see it here.
+        </p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

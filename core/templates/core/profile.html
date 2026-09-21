@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+{% block title %}Profile — EcoTransit{% endblock %}
+{% block content %}
+<div class="max-w-5xl mx-auto px-6 py-10">
+    <h1 class="text-xl font-semibold mb-6">Profile</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-xl">
+        <div>
+            <p class="text-slate text-sm mb-1">Username</p>
+            <p class="text-sm">{{ user.username }}</p>
+        </div>
+        <div>
+            <p class="text-slate text-sm mb-1">Preferred transport mode</p>
+            <p class="text-sm">
+                {% if profile.preferred_transport_mode %}{{ profile.preferred_transport_mode.name }}{% else %}Not set{% endif %}
+            </p>
+        </div>
+        <div>
+            <p class="text-slate text-sm mb-1">Total points</p>
+            <p class="stat-figure text-lg">{{ profile.total_points }}</p>
+        </div>
+        <div>
+            <p class="text-slate text-sm mb-1">Current streak</p>
+            <p class="stat-figure text-lg">{{ profile.current_streak_days }} day{{ profile.current_streak_days|pluralize }}</p>
+        </div>
+        <div>
+            <p class="text-slate text-sm mb-1">Longest streak</p>
+            <p class="stat-figure text-lg">{{ profile.longest_streak_days }} day{{ profile.longest_streak_days|pluralize }}</p>
+        </div>
+        <div>
+            <p class="text-slate text-sm mb-1">Last activity</p>
+            <p class="stat-figure text-lg">{% if profile.last_activity_date %}{{ profile.last_activity_date }}{% else %}&mdash;{% endif %}</p>
+        </div>
+    </div>
+
+    <p class="text-xs text-slate mt-10 max-w-xl">
+        Points are earned automatically when you complete a journey: 10 pts per kg of
+        CO&#8322; saved, plus a distance bonus that varies by transport mode. Badges
+        (First Steps, Eco Warrior, Week of Green) unlock automatically too — see your
+        <a href="{% url 'core:journey-history-list' %}" class="text-amber hover:underline">journey history</a>
+        for details on a completed journey.
+    </p>
+</div>
+{% endblock %}

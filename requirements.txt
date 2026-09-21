@@ -1,0 +1,10 @@
+# EcoTransit — Phase 1 dependencies only.
+# Do not add packages for later phases (routing/geocoding, mapping, AI,
+# blockchain, payments, etc.) here — see README.md for phase boundaries.
+
+Django==5.2.17
+dj-database-url==3.1.2
+python-decouple==3.8
+psycopg2-binary==2.9.10
+requests==2.33.1
+reportlab==4.4.10
